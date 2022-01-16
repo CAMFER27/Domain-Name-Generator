@@ -1,11 +1,16 @@
-/* eslint-disable */
 import "bootstrap";
 import "./style.css";
 
 import "./assets/img/rigo-baby.jpg";
 import "./assets/img/4geeks.ico";
 
-const generateDomain = () => {
+window.onload = () => {
+  document.querySelector("#generator").addEventListener("click", () => {
+    document.querySelector("#domain").innerHTML = generateDomain();
+  });
+};
+
+let generateDomain = () => {
   let pronoun = ["the", "our", "i", "you", "he", "she", "it", "we", "they"];
   let adj = [
     "great",
@@ -29,19 +34,15 @@ const generateDomain = () => {
     "books",
     "movies"
   ];
-  let domain = [".com", ".org", ".art", ".bio", ".heath"];
-
-  window.onload = () => {
-    for (let i = 0; i < pronoun.length; i++) {
-      for (let j = 0; j < adj.length; j++) {
-        for (let k = 0; k < noun.length; k++) {
-          for (let l = 0; l < domain.length; k++) {
-            document.querySelector("#domain").inerHTML =
-              document.querySelector("#domain").innerHTML +
-              pronoun[i].concat(adj[j], noun[k], domain[l], "</br>");
-          }
-        }
-      }
-    }
-  };
+  let dom = [".com", ".org", ".art", ".bio", ".heath"];
+  return (
+    randomElement(pronoun) +
+    randomElement(adj) +
+    randomElement(noun) +
+    randomElement(dom)
+  );
 };
+
+function randomElement(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
